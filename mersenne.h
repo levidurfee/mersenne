@@ -22,5 +22,36 @@
 #ifndef LOL_MP
 #define LOL_MP 1
 
+#include <string.h>
+
+char * lol_reverse(char *str) {
+    char tmp, *src, *dst;
+    size_t len;
+    if (str != NULL) {
+        len = strlen (str);
+        if (len > 1) {
+            src = str;
+            dst = src + len - 1;
+            while (src < dst) {
+                tmp = *src;
+                *src++ = *dst;
+                *dst-- = tmp;
+            }
+        }
+    }
+    return str;
+}
+
+void get_binary(int n, char *str) {
+    while (n) {
+        if (n & 1) {
+            *str++ = '1';
+        } else {
+            *str++ = '0';
+        }
+        n >>= 1;
+    }
+    str = lol_reverse(str);
+}
 
 #endif

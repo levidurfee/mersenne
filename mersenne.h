@@ -68,6 +68,7 @@ char* random(unsigned long int seed, int bit_count) {
 int is_prime(char *str) {
     mpz_t n;
     mpz_set_str(n, str, 36);
+    /* fix bug (issue #1) */
     return mpz_probab_prime_p(n, 2);
 }
 

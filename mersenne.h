@@ -43,4 +43,21 @@ void power(unsigned long int exponent) {
     mpz_clear(one);
 }
 
+void random(unsigned long int seed, int bit_count) {
+    mpz_t rand_Num;
+    unsigned long int i;
+    gmp_randstate_t r_state;
+
+    gmp_randinit_default (r_state);
+    gmp_randseed_ui(r_state, seed);
+
+    mpz_init(rand_Num);
+
+    mpz_urandomb(rand_Num, r_state, bit_count);
+    gmp_printf("%Zd\n", rand_Num);
+
+    gmp_randclear(r_state);
+    mpz_clear(rand_Num);
+}
+
 #endif

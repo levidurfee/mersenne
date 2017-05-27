@@ -2,6 +2,24 @@
 #include <math.h>
 #include "mersenne.h"
 
+int lucas_lehmer(int p) {
+    int s = 4;
+    int m = pow(2, p) - 1;
+    int i = p - 2;
+    int j;
+    for(j=0; j<i; j++) {
+        //s = ((s × s) − 2) mod M
+        s = fmod( ((s * s) - 2), m);
+        printf("%i\n", s);
+    }
+    if(s == 0) {
+        return 1;
+    }
+
+    return 0; // not prime
+}
+
 int main() {
-    mersenne();
+    int t = lucas_lehmer(89);
+    printf("%i\n", t);
 }

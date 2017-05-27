@@ -1,37 +1,44 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include "mersenne.h"
 
-void get_binary(int num, char *str) {
-    *(str+5) = '\0';
-    int mask = 0x10 << 1;
-    while(mask >>= 1) {
-        *str++ = !!(mask & num) + '0';
+char * reverse(char *str) {
+    char tmp, *src, *dst;
+    size_t len;
+    if (str != NULL) {
+        len = strlen (str);
+        if (len > 1) {
+            src = str;
+            dst = src + len - 1;
+            while (src < dst) {
+                tmp = *src;
+                *src++ = *dst;
+                *dst-- = tmp;
+            }
+        }
     }
+    return str;
 }
 
-void get_binary_2(int n, char *str) {
+void get_binary(int n, char *str) {
     while (n) {
         if (n & 1) {
             *str++ = '1';
-            printf("1");
         } else {
             *str++ = '0';
-            printf("0");
         }
-
         n >>= 1;
     }
-    printf("\n");
+    str = reverse(str);
 }
 
 int main() {
     double m;
-    m = 23;
-    int d = 47;
+    m = 929;
+    int divider = 47;
     char bits[6];
     get_binary(m, bits);
-    get_binary_2(m, bits);
     printf("%s\n", bits);
 
     int remainder = 1;
@@ -52,7 +59,7 @@ int main() {
             result = square;
         }
         //printf("Result: %i Mod: %i\n", result, d);
-        remainder = fmod(result, d);
+        remainder = fmod(result, divider);
         i++;
         printf("%i\n", remainder);
     } while(remainder != 1);

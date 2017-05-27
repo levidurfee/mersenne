@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "power.h"
+#include "mersenne.h"
 
 int main() {
 	power();

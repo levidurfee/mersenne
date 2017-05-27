@@ -10,12 +10,28 @@ void get_binary(int num, char *str) {
     }
 }
 
+void get_binary_2(int n, char *str) {
+    while (n) {
+        if (n & 1) {
+            *str++ = '1';
+            printf("1");
+        } else {
+            *str++ = '0';
+            printf("0");
+        }
+
+        n >>= 1;
+    }
+    printf("\n");
+}
+
 int main() {
     double m;
     m = 23;
     int d = 47;
     char bits[6];
     get_binary(m, bits);
+    get_binary_2(m, bits);
     printf("%s\n", bits);
 
     int remainder = 1;

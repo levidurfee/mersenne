@@ -43,10 +43,11 @@ void power(unsigned long int exponent) {
     mpz_clear(one);
 }
 
-void random(unsigned long int seed, int bit_count) {
+char* random(unsigned long int seed, int bit_count) {
     mpz_t rand_Num;
-    unsigned long int i;
     gmp_randstate_t r_state;
+    unsigned long int i;
+    char *random_str;
 
     gmp_randinit_default (r_state);
     gmp_randseed_ui(r_state, seed);
@@ -56,8 +57,18 @@ void random(unsigned long int seed, int bit_count) {
     mpz_urandomb(rand_Num, r_state, bit_count);
     gmp_printf("%Zd\n", rand_Num);
 
+    random_str = mpz_get_str(random_str, 36, rand_Num);
+
     gmp_randclear(r_state);
     mpz_clear(rand_Num);
+
+    return random_str;
+}
+
+int is_prime(char *str) {
+    mpz_t n;
+    mpz_set_str(n, str, 36);
+    return mpz_probab_prime_p(n, 2);
 }
 
 #endif

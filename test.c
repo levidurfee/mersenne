@@ -10,7 +10,7 @@ int lucas_lehmer(int p) {
     for(j=0; j<i; j++) {
         //s = ((s × s) − 2) mod M
         s = fmod( ((s * s) - 2), m);
-        printf("%i\n", s);
+        printf("%lu\n", s);
     }
     if(s == 0) {
         return 1;
@@ -20,6 +20,6 @@ int lucas_lehmer(int p) {
 }
 
 int main() {
-    int t = lucas_lehmer(89);
+    int t = lucas_lehmer(31);
     printf("%i\n", t);
 }

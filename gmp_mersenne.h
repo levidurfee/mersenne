@@ -19,8 +19,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef LOL_MP
-#define LOL_MP 1
+#ifndef LOL_RAND
+#define LOL_RAND 1
 
+/* includes */
+#include <gmp.h>
+void power(unsigned long int exponent) {
+    mpz_t result, base, one;
+    mpz_init(result);
+    mpz_init(base);
+    mpz_init(one);
+
+    mpz_set_str(base, "2", 10);
+    mpz_set_str(one, "1", 10);
+
+    mpz_pow_ui(result, base, exponent);
+    mpz_sub(result, result, one);
+
+    gmp_printf("%Zd\n", result);
+
+    mpz_clear(result);
+    mpz_clear(base);
+    mpz_clear(one);
+}
+
+char* random(unsigned long int seed, int bit_count) {
+    mpz_t rand_Num;
+    gmp_randstate_t r_state;
+    unsigned long int i;
+    char *random_str;
+
+    gmp_randinit_default (r_state);
+    gmp_randseed_ui(r_state, seed);
+
+    mpz_init(rand_Num);
+
+    mpz_urandomb(rand_Num, r_state, bit_count);
+    gmp_printf("%Zd\n", rand_Num);
+
+    random_str = mpz_get_str(random_str, 36, rand_Num);
+
+    gmp_randclear(r_state);
+    mpz_clear(rand_Num);
+
+    return random_str;
+}
+
+int is_prime(char *str) {
+    mpz_t n;
+    mpz_set_str(n, str, 36);
+    /* fix bug (issue #1) */
+    return mpz_probab_prime_p(n, 2);
+}
 
 #endif

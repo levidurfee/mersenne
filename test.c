@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
 #include "mersenne.h"
 
 void get_binary(int num, char *str) {

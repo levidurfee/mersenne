@@ -2,5 +2,5 @@
 #include "mersenne.h"
 
 int main() {
-	power();
+	power(5555);
 }

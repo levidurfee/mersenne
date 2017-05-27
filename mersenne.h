@@ -24,16 +24,14 @@
 
 /* includes */
 #include <gmp.h>
-void power() {
+void power(unsigned long int exponent) {
     mpz_t result, base, one;
-    unsigned long int exponent;
     mpz_init(result);
     mpz_init(base);
     mpz_init(one);
 
     mpz_set_str(base, "2", 10);
     mpz_set_str(one, "1", 10);
-    exponent = 500;
 
     mpz_pow_ui(result, base, exponent);
     mpz_sub(result, result, one);

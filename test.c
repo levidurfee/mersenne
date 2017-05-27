@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "random.h"
+#include "power.h"
 
 int main() {
-	get();
+	power();
 }

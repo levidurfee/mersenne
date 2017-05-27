@@ -3,7 +3,7 @@
 #include "mersenne.h"
 
 int lucas_lehmer(int p) {
-    int s = 4;
+    unsigned long int s = 4;
     int m = pow(2, p) - 1;
     int i = p - 2;
     int j;

@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 #include "mersenne.h"
-
-
+#include "factor.h"
+#include "science.h"
 
 int main() {
-    int t = lucas_lehmer(9941);
-    printf("%i\n", t);
+    int i;
+    i = factor(29, 233);
+    //printf("%i\n", i);
+    get_science();
 }
